@@ -10,9 +10,9 @@ namespace PizzaCreatorFinal
     {
         static void Main( string[] args )
         {
-            Showmenu();
+            ShowMenu();
         }
-        public static void Showmenu()
+        public static void ShowMenu()
         {
             //Main menu options
             Console.WriteLine("Welcome to Papa Ceaser's Pizza");
@@ -33,10 +33,46 @@ namespace PizzaCreatorFinal
                         SizeMenu();
                     }
                     break;
+                case "2":
+                    {
+                        if (PizzaCost <= 0)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("ERROR: There is no order");
+                            ShowMenu();
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            ModifyMenu();
+                        }
+                    }
+                    break;
+                case "3":
+                    {
+                        if (PizzaCost <= 0)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("ERROR: There is no order.");
+                            ShowMenu();
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            ShowPizza();
+                        }
+                    }
+                    break;
+                case "4":
+                    {
+                        Environment.Exit(0); 
+                    }
+                    break;
                 default:
                     {
+                        Console.Clear();
                         ErrorReport();
-                        Showmenu();
+                        ShowMenu();
                     }
                     break;
             }
@@ -134,11 +170,12 @@ namespace PizzaCreatorFinal
                 case "5":
                     {
                         Console.Clear();
-                        Showmenu();
+                        ShowMenu();
                     }
                     break;
                 default:
                     {
+                        Console.Clear();
                         ErrorReport();
                         SizeMenu();
                     }
@@ -255,6 +292,7 @@ namespace PizzaCreatorFinal
                     break;
                 default:
                     {
+                        Console.Clear();
                         ErrorReport();
                         MeatMenu();
                     }
@@ -360,7 +398,7 @@ namespace PizzaCreatorFinal
                     {
                         Console.Clear();
                         CostReport();
-
+                        SauceMenu();
                     }
                     break;
                 case "6":
@@ -371,6 +409,7 @@ namespace PizzaCreatorFinal
                     break;
                 default:
                     {
+                        Console.Clear();
                         ErrorReport();
                         VegetableMenu();
                     }
@@ -397,6 +436,7 @@ namespace PizzaCreatorFinal
                         {
                             Traditional = true;
                             Console.Clear();
+                            SauceMenu();
                         }
                         else
                         {
@@ -414,6 +454,7 @@ namespace PizzaCreatorFinal
                             PizzaCost += 1m;
                             Console.Clear();
                             CostReport();
+                            SauceMenu();
                         }
                         else
                         {
@@ -455,7 +496,9 @@ namespace PizzaCreatorFinal
                         }
                         else
                         {
-
+                            Console.Clear();
+                            CostReport();
+                            CheeseMenu();
                         }
                     }
                 break;
@@ -467,7 +510,269 @@ namespace PizzaCreatorFinal
                     break;
                 default:
                     {
+                        Console.Clear();
                         ErrorReport();
+                        SauceMenu();
+                    }
+                    break;
+            }
+        }
+
+        public static void CheeseMenu()
+        {
+            Console.WriteLine("How much cheese would you like?");
+            Console.WriteLine("");
+            Console.WriteLine("1.) Regular: $0 " + RegularCheese);
+            Console.WriteLine("2.) Extra: $1.25 " + ExtraCheese);
+            Console.WriteLine("3.) Next");
+            Console.WriteLine("4.) Cancel");
+            string CheeseMenuChoice = Console.ReadLine();
+            switch (CheeseMenuChoice)
+            {
+                case "1":
+                    {
+                        if (RegularCheese == false)
+                        {
+                            RegularCheese = true;
+                            Console.Clear();
+                            CostReport();
+                            DeliveryMenu();
+                        }
+                        else
+                        {
+                            RegularCheese = false;
+                            Console.Clear();
+                            CostReport();
+                            CheeseMenu();
+                        }
+                    }
+                    break;
+                case "2":
+                    {
+                        if (ExtraCheese == false)
+                        {
+                            ExtraCheese = true;
+                            PizzaCost += 1.25m;
+                            Console.Clear();
+                            CostReport();
+                            DeliveryMenu();
+                        }
+                        else
+                        {
+                            ExtraCheese = false;
+                            PizzaCost -= 1.25m;
+                            Console.Clear();
+                            CostReport();
+                            CheeseMenu();
+                        }
+                    }
+                    break;
+                case "3":
+                    {
+                        if (RegularCheese == false && ExtraCheese == false)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("ERROR: You must choose at least one option.");
+                            CheeseMenu();
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            CostReport();
+                            DeliveryMenu();
+                        }
+                    }
+                    break;
+                case "4":
+                    {
+                        Console.Clear();
+                        SauceMenu();
+                    }
+                    break;
+                default:
+                    {
+                        Console.Clear();
+                        ErrorReport();
+                        CheeseMenu();
+                    }
+                    break;
+            }
+        }
+
+        public static void DeliveryMenu()
+        {
+            Console.WriteLine("How would you like to recieve your pizza?");
+            Console.WriteLine("");
+            Console.WriteLine("1.) Take Out: $0 " + TakeOut);
+            Console.WriteLine("2.) Delivery: $2.50 " + Delivery);
+            Console.WriteLine("3.) To Receipt");
+            Console.WriteLine("4.) Cancel");
+            string DeliveryMenuChoice = Console.ReadLine();
+            switch (DeliveryMenuChoice)
+            {
+                case "1":
+                    {
+                        if (TakeOut == false)
+                        {
+                            TakeOut = true;
+                            Console.Clear();
+                            ShowPizza();
+                        }
+                        else
+                        {
+                            TakeOut = false;
+                            Console.Clear();
+                            DeliveryMenu();
+                        }
+                    }
+                    break;
+                case "2":
+                    {
+                        if (Delivery == false)
+                        {
+                            Delivery = true;
+                            Console.Clear();
+                            ShowPizza();
+                        } 
+                        else
+                        {
+                            Delivery = false;
+                            Console.Clear();
+                            DeliveryMenu();
+                        }
+                    }
+                    break;
+                case "3":
+                    {
+                        if (TakeOut == false && Delivery == false)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("You must choose one option");
+                            DeliveryMenu();
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            ShowPizza();
+                        }
+                    }
+                    break;
+                case "4":
+                    {
+                        Console.Clear();
+                        CheeseMenu();
+                    }
+                    break;
+                default:
+                    {
+                        Console.Clear();
+                        ErrorReport();
+                        DeliveryMenu();
+                    }
+                    break;
+            }
+        }
+
+        public static void ShowPizza()
+        {
+            ShowSize();
+            ShowDelivery();
+            Console.WriteLine("Meats");
+            Console.WriteLine("");
+            ShowMeats();
+            Console.WriteLine("Vegetables");
+            Console.WriteLine("");
+            ShowVegetables();
+            Console.WriteLine("Cheese");
+            Console.WriteLine("");
+            ShowCheese();
+            Console.WriteLine("Sauce");
+            Console.WriteLine("");
+            ShowSauce();
+            Console.WriteLine("------------------");
+            Console.WriteLine("Total       " + PizzaCost);
+            Console.WriteLine("");
+            Console.WriteLine("1.) Back to menu");
+            string RecieptChoice = Console.ReadLine();
+            switch (RecieptChoice)
+            {
+                case "1":
+                    {
+                        Console.Clear();
+                        ShowMenu();
+                    }
+                    break;
+                default:
+                    {
+                        Console.Clear();
+                        ErrorReport();
+                        ShowPizza();
+                    }
+                    break;
+            }
+        }
+
+        public static void ModifyMenu()
+        {
+            Console.WriteLine("What part of your order would you like to modify?");
+            Console.WriteLine("");
+            Console.WriteLine("1.) Size");
+            Console.WriteLine("2.) Meats");
+            Console.WriteLine("3.) Vegetables");
+            Console.WriteLine("4.) Sauce");
+            Console.WriteLine("5.) Cheese");
+            Console.WriteLine("6.) Delivery options");
+            Console.WriteLine("7.) Cancel");
+            string ModifyMenuChoice = Console.ReadLine();
+            switch (ModifyMenuChoice)
+            {
+                case "1":
+                    {
+                        Console.Clear();
+                        SizeMenu();
+                    }
+                    break;
+                case "2":
+                    {
+                        Console.Clear();
+                        MeatMenu();
+                    }
+                    break;
+                case "3":
+                    {
+                        Console.Clear();
+                        VegetableMenu();
+                    }
+                    break;
+                case "4":
+                    {
+                        Console.Clear();
+                        SauceMenu();
+                    }
+                    break;
+                case "5":
+                    {
+                        Console.Clear();
+                        CheeseMenu();
+                    }
+                    break;
+                case "6":
+                    {
+                        Console.Clear();
+                        DeliveryMenu();
+                    }
+                    break;
+                case "7":
+                    {
+                        Console.Clear();
+                        ShowMenu();
+                    }
+                    break;
+                default:
+                    {
+                        Console.Clear();
+                        ErrorReport();
+                        ModifyMenu();
                     }
                     break;
             }
@@ -513,15 +818,122 @@ namespace PizzaCreatorFinal
         public static bool Garlic;
         public static bool Oregano;
 
+        //Cheese
+        public static bool RegularCheese;
+        public static bool ExtraCheese;
+
+        //Delivery
+        public static bool TakeOut;
+        public static bool Delivery;
+
         private static void ErrorReport()
         {
             Console.Clear();
             Console.WriteLine("ERROR: Selection must be a valid number");
         }
+
         private static void CostReport()
         {
             Console.WriteLine("Your current price is: {0:C}", PizzaCost);
             Console.WriteLine("");
+        }
+
+        private static void ShowSize()
+        {
+            if (SizeSmall == true)
+            {
+                Console.WriteLine("Small Pizza-----$5");
+            }
+
+            if (SizeMedium == true)
+            {
+                Console.WriteLine("Medium Pizza-----$6.25");
+            }
+
+            if (SizeLarge == true)
+            {
+                Console.WriteLine("Large Pizza-----$8.75");
+            }
+        }
+
+        private static void ShowDelivery()
+        {
+            if (TakeOut == true)
+            {
+                Console.WriteLine("Takeout-----$0");
+            }
+            if (Delivery == true)
+            {
+                Console.WriteLine("Delivery-----$2.50");
+            }
+        }
+
+        private static void ShowMeats()
+        {
+            if (Bacon == true)
+            {
+                Console.WriteLine("Bacon-----$0.75");
+            }
+            if (Ham == true)
+            {
+                Console.WriteLine("Ham-----$0.75");
+            }
+            if (Pepperoni == true)
+            {
+                Console.WriteLine("Pepperoni-----$0.75");
+            }
+            if (Suasage == true)
+            {
+                Console.WriteLine("Suasage-----$0.75");
+            }
+        }
+
+        private static void ShowVegetables()
+        {
+            if (BlackOlives == true)
+            {
+                Console.WriteLine("Black Olives-----$0.50");
+            }
+            if (Mushrooms == true)
+            {
+                Console.WriteLine("Mushrooms-----$0.50");
+            }
+            if (Onions == true)
+            {
+                Console.WriteLine("Onions-----$0.50");
+            }
+            if (Peppers == true)
+            {
+                Console.WriteLine("Peppers-----$0.50");
+            }
+        }
+
+        private static void ShowSauce()
+        {
+            if (Traditional == true)
+            {
+                Console.WriteLine("Traditional-----$0");
+            }
+            if (Garlic == true)
+            {
+                Console.WriteLine("Garlic-----$1");
+            }
+            if (Oregano == true)
+            {
+                Console.WriteLine("Oregano-----$1");
+            }
+        }
+
+        private static void ShowCheese()
+        {
+            if (RegularCheese == true)
+            {
+                Console.WriteLine("Regular-----$0");
+            }
+            if (ExtraCheese == true)
+            {
+                Console.WriteLine("Extra-----$1.25");
+            }
         }
     }
 }
