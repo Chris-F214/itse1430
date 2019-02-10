@@ -94,6 +94,11 @@ namespace PizzaCreatorFinal
             {
                 case "1":
                     {
+                        if (SizeMedium == true || SizeLarge == true)
+                        {
+                            SizeMedium = false;
+                            SizeLarge = false;
+                        }
                         if (SizeSmall == false)
                         {
                             SizeSmall = true;
@@ -114,6 +119,11 @@ namespace PizzaCreatorFinal
 
                 case "2":
                     {
+                        if (SizeSmall == true || SizeLarge == true)
+                        {
+                            SizeSmall = false;
+                            SizeLarge = false;
+                        }
                         if (SizeMedium == false)
                         {
                             SizeMedium = true;
@@ -134,6 +144,11 @@ namespace PizzaCreatorFinal
 
                 case "3":
                     {
+                        if (SizeSmall == true || SizeMedium == true)
+                        {
+                            SizeSmall = false;
+                            SizeMedium = false;
+                        }
                         if (SizeLarge == false)
                         {
                             SizeLarge = true;
@@ -162,6 +177,7 @@ namespace PizzaCreatorFinal
                         }
                         else
                         {
+                            Console.Clear();
                             MeatMenu();
                         }
                     }
@@ -531,6 +547,10 @@ namespace PizzaCreatorFinal
             {
                 case "1":
                     {
+                        if (ExtraCheese == true)
+                        {
+                            ExtraCheese = false;
+                        }
                         if (RegularCheese == false)
                         {
                             RegularCheese = true;
@@ -549,6 +569,10 @@ namespace PizzaCreatorFinal
                     break;
                 case "2":
                     {
+                        if (RegularCheese == true)
+                        {
+                            RegularCheese = false;
+                        }
                         if (ExtraCheese == false)
                         {
                             ExtraCheese = true;
@@ -612,6 +636,10 @@ namespace PizzaCreatorFinal
             {
                 case "1":
                     {
+                        if (Delivery == true)
+                        {
+                            Delivery = false;
+                        }
                         if (TakeOut == false)
                         {
                             TakeOut = true;
@@ -628,6 +656,10 @@ namespace PizzaCreatorFinal
                     break;
                 case "2":
                     {
+                        if (TakeOut == true)
+                        {
+                            TakeOut = false;
+                        }
                         if (Delivery == false)
                         {
                             Delivery = true;
