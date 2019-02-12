@@ -709,17 +709,17 @@ namespace PizzaCreatorFinal
         {
             ShowSize();
             ShowDelivery();
+            Console.WriteLine("");
             Console.WriteLine("Meats");
-            Console.WriteLine("");
             ShowMeats();
+            Console.WriteLine("");
             Console.WriteLine("Vegetables");
-            Console.WriteLine("");
             ShowVegetables();
+            Console.WriteLine("");
             Console.WriteLine("Cheese");
-            Console.WriteLine("");
             ShowCheese();
-            Console.WriteLine("Sauce");
             Console.WriteLine("");
+            Console.WriteLine("Sauce");
             ShowSauce();
             Console.WriteLine("------------------");
             Console.WriteLine("Total       " + PizzaCost);
