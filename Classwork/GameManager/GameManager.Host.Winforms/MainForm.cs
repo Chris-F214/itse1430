@@ -28,7 +28,15 @@ namespace GameManager.Host.Winforms
 
             var name = game.Name;
             if (name.Length == 0)
-                /* is empty*/
+                /* is empty*/;
+
+            //Checking for null - long way
+            if (game.Name != null && game.Name.Length == 0)
+                ;
+            //short way
+            //game.Name.Length -> int
+            //game.Name?.Length -> int?
+            if ((game.Name?.Length ?? 0)== 0)
                 ;
             if (game.Name.Length == 0)
                 /* is empty */

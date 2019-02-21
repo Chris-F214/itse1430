@@ -12,7 +12,7 @@ namespace GameManager.Host.Winforms
 {
     public partial class GameForm : Form
     {
-        public GameForm()
+        public GameForm() //: base()
         {
             InitializeComponent();
         }
@@ -48,6 +48,8 @@ namespace GameManager.Host.Winforms
             _CBOwned.Checked = game.Owned;
             _CBCompleted.Checked = game.Completed;
         }
+
+        //saves UI into new game
         private Game SaveData ()
         {
             var game = new Game();
@@ -57,11 +59,21 @@ namespace GameManager.Host.Winforms
             game.Owned = _CBOwned.Checked;
             game.Completed = _CBCompleted.Checked;
 
+            //Demoing ctor
+            var game2 = new Game(_txtName.Text, ReadDecimal(_txtPrice));
+
             return game;
         }
 
-        private void GameForm_Load( object sender, EventArgs e )
+        //defined in type
+        //Derived types may override and change it
+        protected virtual void CanBeChanged() { }
+
+        protected override void OnLoad( EventArgs e )
         {
+            //this.OnLoad(e);
+            base.OnLoad(e);
+
             //Init UI if editing  a game
             if (Game != null)
                 LoadData(Game);
