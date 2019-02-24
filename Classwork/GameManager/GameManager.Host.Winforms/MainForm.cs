@@ -199,5 +199,10 @@ namespace GameManager.Host.Winforms
         {
 
         }
+
+        private void menuStrip1_ItemClicked( object sender, ToolStripItemClickedEventArgs e )
+        {
+
+        }
     }
 }
