@@ -28,15 +28,20 @@ namespace GameManager.Host.Winforms
 
             var name = game.Name;
             if (name.Length == 0)
-                /* is empty*/;
+                /* is empty*/
+                ;
 
             //Checking for null - long way
             if (game.Name != null && game.Name.Length == 0)
                 ;
-            //short way
-            //game.Name.Length -> int
-            //game.Name?.Length -> int?
-            if ((game.Name?.Length ?? 0)== 0)
+
+            //Conditional - E ? Et : Ef
+            var length = game.Name != null ? game.Name.Length : 0;
+
+            //Short way - null conditional
+            // game.Name.Length -> int
+            // game.Name?.Length -> int?
+            if ((game.Name?.Length ?? 0) == 0)
                 ;
             if (game.Name.Length == 0)
                 /* is empty */
@@ -139,7 +144,7 @@ namespace GameManager.Host.Winforms
 
         private void UpdateGame( Game oldGame, Game newGame )
         {
-            for (var index = 0; index < _games.Length; ++index)
+            for (int index = 0; index < _games.Length; ++index)
             {
                 if (_games[index] == oldGame)
                 {
@@ -200,9 +205,14 @@ namespace GameManager.Host.Winforms
 
         }
 
-        private void menuStrip1_ItemClicked( object sender, ToolStripItemClickedEventArgs e )
+        protected override void OnFormClosing( FormClosingEventArgs e )
         {
-
+            if (MessageBox.Show(this, "Are you sure?", "Close", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                e.Cancel = true;
+                return;
+            };
+            base.OnFormClosing(e);
         }
     }
 }

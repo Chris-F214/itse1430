@@ -99,6 +99,11 @@ namespace GameManager
             var now = DateTime.Now;
         }
 
+        public override string ToString()
+        {
+            return Name;
+        }
+
         //Can init the data as well
         //public string [] Genres { get; set; }
         //Don't use array properties because they require cloning
