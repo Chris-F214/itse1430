@@ -14,7 +14,7 @@ namespace CharacterCreator
             set { _name = value; }
         }
         private string _name = "";
-        public bool Fighter = false;
+        public bool Fighter { get; set; }
         public bool Hunter = false;
         public bool Priest = false;
         public bool Rogue = false;
@@ -24,10 +24,11 @@ namespace CharacterCreator
         public bool Gnome = false;
         public bool HalfElf = false;
         public bool Human = false;
-        public int Strength = 10;
-        public int Intelligence = 10;
-        public int Agility = 10;
-        public int Constitution = 10;
-        public int Charisma = 10;
+        public static decimal Strength = 10;
+        public static decimal Intelligence = 10;
+        public static decimal Agility = 10;
+        public static decimal Constitution = 10;
+        public static decimal Charisma = 10;
+        public static decimal UnusedStats = 50;
     }
 }
