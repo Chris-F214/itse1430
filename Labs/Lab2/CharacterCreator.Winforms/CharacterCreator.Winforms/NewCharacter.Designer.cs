@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this._textName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,8 +39,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this._textDescription = new System.Windows.Forms.TextBox();
+            this._onSave = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this._displayStrength = new System.Windows.Forms.Label();
@@ -60,6 +61,8 @@
             this._addCharisma = new System.Windows.Forms.Button();
             this._removeCharisma = new System.Windows.Forms.Button();
             this._onCancel = new System.Windows.Forms.Button();
+            this._errors = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this._errors)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -71,12 +74,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Name:";
             // 
-            // textBox1
+            // _textName
             // 
-            this.textBox1.Location = new System.Drawing.Point(58, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
+            this._textName.Location = new System.Drawing.Point(58, 13);
+            this._textName.Name = "_textName";
+            this._textName.Size = new System.Drawing.Size(100, 20);
+            this._textName.TabIndex = 1;
             // 
             // label2
             // 
@@ -155,26 +158,27 @@
             this.label8.TabIndex = 14;
             this.label8.Text = "Description:";
             // 
-            // textBox2
+            // _textDescription
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this._textDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(17, 264);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(211, 20);
-            this.textBox2.TabIndex = 15;
+            this._textDescription.Location = new System.Drawing.Point(17, 264);
+            this._textDescription.Multiline = true;
+            this._textDescription.Name = "_textDescription";
+            this._textDescription.Size = new System.Drawing.Size(211, 20);
+            this._textDescription.TabIndex = 15;
             // 
-            // button1
+            // _onSave
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(235, 289);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "&Save";
-            this.button1.UseVisualStyleBackColor = true;
+            this._onSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._onSave.Location = new System.Drawing.Point(235, 289);
+            this._onSave.Name = "_onSave";
+            this._onSave.Size = new System.Drawing.Size(75, 23);
+            this._onSave.TabIndex = 16;
+            this._onSave.Text = "&Save";
+            this._onSave.UseVisualStyleBackColor = true;
+            this._onSave.Click += new System.EventHandler(this._onSave_Click);
             // 
             // label9
             // 
@@ -372,6 +376,11 @@
             this._onCancel.UseVisualStyleBackColor = true;
             this._onCancel.Click += new System.EventHandler(this._onCancel_Click);
             // 
+            // _errors
+            // 
+            this._errors.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this._errors.ContainerControl = this;
+            // 
             // NewCharacter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -397,8 +406,8 @@
             this.Controls.Add(this._displayStrength);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this._onSave);
+            this.Controls.Add(this._textDescription);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -407,7 +416,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this._textName);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -418,6 +427,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create New Character";
+            ((System.ComponentModel.ISupportInitialize)(this._errors)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -426,7 +436,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox _textName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label3;
@@ -435,8 +445,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox _textDescription;
+        private System.Windows.Forms.Button _onSave;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label _displayStrength;
@@ -457,5 +467,6 @@
         private System.Windows.Forms.Button _addCharisma;
         private System.Windows.Forms.Button _removeCharisma;
         private System.Windows.Forms.Button _onCancel;
+        private System.Windows.Forms.ErrorProvider _errors;
     }
 }
