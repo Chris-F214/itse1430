@@ -14,16 +14,12 @@ namespace CharacterCreator
             set { _name = value; }
         }
         private string _name = "";
-        public bool Fighter { get; set; }
-        public bool Hunter = false;
-        public bool Priest = false;
-        public bool Rogue = false;
-        public bool Wizard = false;
-        public bool Dwarf = false;
-        public bool Elf = false;
-        public bool Gnome = false;
-        public bool HalfElf = false;
-        public bool Human = false;
+        public string Description
+        {
+            get { return _description ?? ""; }
+            set { _description = value; }
+        }
+        private string _description = "";
         public static decimal Strength = 10;
         public static decimal Intelligence = 10;
         public static decimal Agility = 10;

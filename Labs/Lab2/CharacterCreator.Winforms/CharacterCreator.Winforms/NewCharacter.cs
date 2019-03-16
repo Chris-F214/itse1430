@@ -49,6 +49,7 @@ namespace CharacterCreator.Winforms
                 DisplayUnusedStats();
             }
         }
+
         public void DisplayUnusedStats()
         {
             _displayUnusedStatPoints.Text = Character.UnusedStats.ToString();
@@ -129,6 +130,12 @@ namespace CharacterCreator.Winforms
                 _displayCharisma.Text = Character.Charisma.ToString();
                 DisplayUnusedStats();
             }
+        }
+
+        private void _onCancel_Click( object sender, EventArgs e )
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

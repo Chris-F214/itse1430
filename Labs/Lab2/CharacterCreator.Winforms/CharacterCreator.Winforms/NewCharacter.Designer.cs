@@ -40,7 +40,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this._displayStrength = new System.Windows.Forms.Label();
@@ -60,6 +59,7 @@
             this._displayCharisma = new System.Windows.Forms.Label();
             this._addCharisma = new System.Windows.Forms.Button();
             this._removeCharisma = new System.Windows.Forms.Button();
+            this._onCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -175,16 +175,6 @@
             this.button1.TabIndex = 16;
             this.button1.Text = "&Save";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(317, 288);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "&Cancel";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // label9
             // 
@@ -372,11 +362,22 @@
             this._removeCharisma.UseVisualStyleBackColor = true;
             this._removeCharisma.Click += new System.EventHandler(this._removeCharisma_Click);
             // 
+            // _onCancel
+            // 
+            this._onCancel.Location = new System.Drawing.Point(316, 289);
+            this._onCancel.Name = "_onCancel";
+            this._onCancel.Size = new System.Drawing.Size(75, 23);
+            this._onCancel.TabIndex = 39;
+            this._onCancel.Text = "&Cancel";
+            this._onCancel.UseVisualStyleBackColor = true;
+            this._onCancel.Click += new System.EventHandler(this._onCancel_Click);
+            // 
             // NewCharacter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(412, 324);
+            this.Controls.Add(this._onCancel);
             this.Controls.Add(this._removeCharisma);
             this.Controls.Add(this._addCharisma);
             this.Controls.Add(this._displayCharisma);
@@ -396,7 +397,6 @@
             this.Controls.Add(this._displayStrength);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label8);
@@ -437,7 +437,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label _displayStrength;
@@ -457,5 +456,6 @@
         private System.Windows.Forms.Label _displayCharisma;
         private System.Windows.Forms.Button _addCharisma;
         private System.Windows.Forms.Button _removeCharisma;
+        private System.Windows.Forms.Button _onCancel;
     }
 }
