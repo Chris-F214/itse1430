@@ -32,9 +32,10 @@
             this.O = new System.Windows.Forms.ToolStripMenuItem();
             this.OnFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this.characterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OnCharacterNew = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OnHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.OnCharacterNew = new System.Windows.Forms.ToolStripMenuItem();
+            this._listCharacters = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +63,7 @@
             // 
             this.OnFileExit.Name = "OnFileExit";
             this.OnFileExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.OnFileExit.Size = new System.Drawing.Size(180, 22);
+            this.OnFileExit.Size = new System.Drawing.Size(134, 22);
             this.OnFileExit.Text = "E&xit";
             this.OnFileExit.Click += new System.EventHandler(this.OnFileExit_Click);
             // 
@@ -73,6 +74,14 @@
             this.characterToolStripMenuItem.Name = "characterToolStripMenuItem";
             this.characterToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.characterToolStripMenuItem.Text = "&Character";
+            // 
+            // OnCharacterNew
+            // 
+            this.OnCharacterNew.Name = "OnCharacterNew";
+            this.OnCharacterNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.OnCharacterNew.Size = new System.Drawing.Size(141, 22);
+            this.OnCharacterNew.Text = "&New";
+            this.OnCharacterNew.Click += new System.EventHandler(this.OnCharacterNew_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -86,23 +95,25 @@
             // 
             this.OnHelpAbout.Name = "OnHelpAbout";
             this.OnHelpAbout.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.OnHelpAbout.Size = new System.Drawing.Size(180, 22);
+            this.OnHelpAbout.Size = new System.Drawing.Size(147, 22);
             this.OnHelpAbout.Text = "&About";
             this.OnHelpAbout.Click += new System.EventHandler(this.OnHelpAbout_Click);
             // 
-            // OnCharacterNew
+            // _listCharacters
             // 
-            this.OnCharacterNew.Name = "OnCharacterNew";
-            this.OnCharacterNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.OnCharacterNew.Size = new System.Drawing.Size(180, 22);
-            this.OnCharacterNew.Text = "&New";
-            this.OnCharacterNew.Click += new System.EventHandler(this.OnCharacterNew_Click);
+            this._listCharacters.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._listCharacters.FormattingEnabled = true;
+            this._listCharacters.Location = new System.Drawing.Point(0, 24);
+            this._listCharacters.Name = "_listCharacters";
+            this._listCharacters.Size = new System.Drawing.Size(284, 387);
+            this._listCharacters.TabIndex = 1;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 411);
+            this.Controls.Add(this._listCharacters);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(260, 420);
@@ -125,6 +136,7 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OnHelpAbout;
         private System.Windows.Forms.ToolStripMenuItem OnCharacterNew;
+        private System.Windows.Forms.ListBox _listCharacters;
     }
 }
 

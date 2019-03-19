@@ -33,5 +33,21 @@ namespace CharacterCreator.Winforms
             var form = new NewCharacter();
             form.ShowDialog();
         }
+
+        private void BindList()
+        {
+            _listCharacters.Items.Clear();
+            _listCharacters.DisplayMember = nameof(Character.Name);
+
+        }
+
+        private void OnSafeAdd( NewCharacter form)
+        {
+            try
+            {
+                
+            }
+        }
+        private
     }
 }
