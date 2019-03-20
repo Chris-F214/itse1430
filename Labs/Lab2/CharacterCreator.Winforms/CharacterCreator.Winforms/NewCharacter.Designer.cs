@@ -43,11 +43,8 @@
             this._onSave = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this._displayStrength = new System.Windows.Forms.Label();
             this._unusedStatPoints = new System.Windows.Forms.Label();
             this._displayUnusedStatPoints = new System.Windows.Forms.Label();
-            this._addStrength = new System.Windows.Forms.Button();
-            this._removeStrength = new System.Windows.Forms.Button();
             this._displayIntelligence = new System.Windows.Forms.Label();
             this._addIntelligence = new System.Windows.Forms.Button();
             this._removeIntelligence = new System.Windows.Forms.Button();
@@ -62,6 +59,7 @@
             this._removeCharisma = new System.Windows.Forms.Button();
             this._onCancel = new System.Windows.Forms.Button();
             this._errors = new System.Windows.Forms.ErrorProvider(this.components);
+            this._textBoxStrength = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this._errors)).BeginInit();
             this.SuspendLayout();
             // 
@@ -203,15 +201,6 @@
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 21;
             // 
-            // _displayStrength
-            // 
-            this._displayStrength.AutoSize = true;
-            this._displayStrength.Location = new System.Drawing.Point(79, 100);
-            this._displayStrength.Name = "_displayStrength";
-            this._displayStrength.Size = new System.Drawing.Size(19, 13);
-            this._displayStrength.TabIndex = 22;
-            this._displayStrength.Text = "10";
-            // 
             // _unusedStatPoints
             // 
             this._unusedStatPoints.AutoSize = true;
@@ -229,26 +218,6 @@
             this._displayUnusedStatPoints.Size = new System.Drawing.Size(19, 13);
             this._displayUnusedStatPoints.TabIndex = 24;
             this._displayUnusedStatPoints.Text = "50";
-            // 
-            // _addStrength
-            // 
-            this._addStrength.Location = new System.Drawing.Point(104, 95);
-            this._addStrength.Name = "_addStrength";
-            this._addStrength.Size = new System.Drawing.Size(23, 23);
-            this._addStrength.TabIndex = 25;
-            this._addStrength.Text = "+";
-            this._addStrength.UseVisualStyleBackColor = true;
-            this._addStrength.Click += new System.EventHandler(this._addStrength_Click);
-            // 
-            // _removeStrength
-            // 
-            this._removeStrength.Location = new System.Drawing.Point(133, 95);
-            this._removeStrength.Name = "_removeStrength";
-            this._removeStrength.Size = new System.Drawing.Size(25, 23);
-            this._removeStrength.TabIndex = 26;
-            this._removeStrength.Text = "-";
-            this._removeStrength.UseVisualStyleBackColor = true;
-            this._removeStrength.Click += new System.EventHandler(this._removeStrength_Click);
             // 
             // _displayIntelligence
             // 
@@ -381,11 +350,20 @@
             this._errors.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this._errors.ContainerControl = this;
             // 
+            // _textBoxStrength
+            // 
+            this._textBoxStrength.Location = new System.Drawing.Point(82, 97);
+            this._textBoxStrength.Name = "_textBoxStrength";
+            this._textBoxStrength.Size = new System.Drawing.Size(100, 20);
+            this._textBoxStrength.TabIndex = 40;
+            this._textBoxStrength.Text = "50";
+            // 
             // NewCharacter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(412, 324);
+            this.Controls.Add(this._textBoxStrength);
             this.Controls.Add(this._onCancel);
             this.Controls.Add(this._removeCharisma);
             this.Controls.Add(this._addCharisma);
@@ -399,11 +377,8 @@
             this.Controls.Add(this._removeIntelligence);
             this.Controls.Add(this._addIntelligence);
             this.Controls.Add(this._displayIntelligence);
-            this.Controls.Add(this._removeStrength);
-            this.Controls.Add(this._addStrength);
             this.Controls.Add(this._displayUnusedStatPoints);
             this.Controls.Add(this._unusedStatPoints);
-            this.Controls.Add(this._displayStrength);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.label9);
             this.Controls.Add(this._onSave);
@@ -449,11 +424,8 @@
         private System.Windows.Forms.Button _onSave;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label _displayStrength;
         private System.Windows.Forms.Label _unusedStatPoints;
         private System.Windows.Forms.Label _displayUnusedStatPoints;
-        private System.Windows.Forms.Button _addStrength;
-        private System.Windows.Forms.Button _removeStrength;
         private System.Windows.Forms.Label _displayIntelligence;
         private System.Windows.Forms.Button _addIntelligence;
         private System.Windows.Forms.Button _removeIntelligence;
@@ -468,5 +440,6 @@
         private System.Windows.Forms.Button _removeCharisma;
         private System.Windows.Forms.Button _onCancel;
         private System.Windows.Forms.ErrorProvider _errors;
+        private System.Windows.Forms.TextBox _textBoxStrength;
     }
 }

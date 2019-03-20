@@ -30,24 +30,24 @@ namespace CharacterCreator.Winforms
 
         private void OnCharacterNew_Click( object sender, EventArgs e )
         {
-            var form = new NewCharacter();
-            form.ShowDialog();
+            var form = new CreateNewCharacter();
+            
+            while(true)
+            {
+                if (form.ShowDialog(this) != DialogResult.OK)
+                    return;
+                BindList();
+            }
         }
 
         private void BindList()
         {
-            _listCharacters.Items.Clear();
-            _listCharacters.DisplayMember = nameof(Character.Name);
+            _characterRoster.Items.Clear();
+            _characterRoster.DisplayMember = nameof(Character.Name);
 
+            _characterRoster.Items.AddRange(_character.GetAll());
         }
 
-    //    private void OnSafeAdd( NewCharacter form)
-    //    {
-    //        try
-    //        {
-                
-    //        }
-    //    }
-    //    private
+        private CharacterDatabase _character = new CharacterDatabase();
     }
 }

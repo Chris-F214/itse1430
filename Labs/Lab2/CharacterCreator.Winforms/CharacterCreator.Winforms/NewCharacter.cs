@@ -18,27 +18,27 @@ namespace CharacterCreator.Winforms
         }
         public Character Character { get; set; }
 
-        private void _addStrength_Click( object sender, EventArgs e )
-        {
-            if (Character.Strength < 100 & Character.UnusedStats > 0)
-            {
-                 Character.Strength++;
-                 Character.UnusedStats--;
-                 _displayStrength.Text = Character.Strength.ToString();
-                 DisplayUnusedStats();
-            }
-        }
+        //private void _addStrength_Click( object sender, EventArgs e )
+        //{
+        //    if (Character.Strength < 100 & Character.UnusedStats > 0)
+        //    {
+        //         Character.Strength++;
+        //         Character.UnusedStats--;
+        //         _displayStrength.Text = Character.Strength.ToString();
+        //         DisplayUnusedStats();
+        //    }
+        //}
 
-        private void _removeStrength_Click( object sender, EventArgs e )
-        {
-            if (Character.Strength > 1 & Character.UnusedStats < 100)
-            {
-                Character.Strength--;
-                Character.UnusedStats++;
-                _displayStrength.Text = Character.Strength.ToString();
-                DisplayUnusedStats();
-            }
-        }
+        //private void _removeStrength_Click( object sender, EventArgs e )
+        //{
+        //    if (Character.Strength > 1 & Character.UnusedStats < 100)
+        //    {
+        //        Character.Strength--;
+        //        Character.UnusedStats++;
+        //        _displayStrength.Text = Character.Strength.ToString();
+        //        DisplayUnusedStats();
+        //    }
+        //}
 
         private void _addIntelligence_Click( object sender, EventArgs e )
         {
@@ -162,20 +162,30 @@ namespace CharacterCreator.Winforms
             var character = new Character();
             character.Name = _textName.Text;
             character.Description = _textDescription.Text;
-            _strength = ReadDecimal(_displayStrength);
+            character.Strength = ReadDecimal(_textBoxStrength);
+            //_strength = ReadDecimal(_displayStrength);
 
             return character;
         }
 
-        private decimal _strength = Character.Strength;
-        private decimal ReadDecimal ( Label control)
+        private decimal ReadDecimal ( TextBox control )
         {
             if (control.Text.Length == 0)
                 return 0;
             if (Decimal.TryParse(control.Text, out var value))
                 return value;
+
             return -1;
         }
+        //private decimal _strength = Character.Strength;
+        //private decimal ReadDecimal ( Label control)
+        //{
+        //    if (control.Text.Length == 0)
+        //        return 0;
+        //    if (Decimal.TryParse(control.Text, out var value))
+        //        return value;
+        //    return -1;
+        //}
 
         private void OnValidateName( object sender, CancelEventArgs e)
         {
@@ -195,15 +205,15 @@ namespace CharacterCreator.Winforms
         {
             var tb = sender as TextBox;
 
-            var unusedstats = ReadDecimal(_displayUnusedStatPoints);
-            if (unusedstats > 0)
-            {
-                _errors.SetError(tb, "You have unused stat points.");
-                e.Cancel = true;
-            } else
-            {
-                _errors.SetError(tb, "");
-            }
+            //var unusedstats = ReadDecimal(_displayUnusedStatPoints);
+            //if (unusedstats > 0)
+            //{
+            //    _errors.SetError(tb, "You have unused stat points.");
+            //    e.Cancel = true;
+            //} else
+            //{
+            //    _errors.SetError(tb, "");
+            //}
         }
     }
 }

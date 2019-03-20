@@ -24,8 +24,8 @@ namespace CharacterCreator
         }
         private string _description = "";
 
-        public static decimal Strength = 10;
-
+        public decimal Strength { get; set; }
+        
         public static decimal Intelligence  = 10;
 
         public static decimal Agility  = 10;
