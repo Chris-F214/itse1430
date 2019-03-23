@@ -33,12 +33,12 @@
             this.OnFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this.characterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OnCharacterNew = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OnCharacterEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OnHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this._characterRoster = new System.Windows.Forms.ListBox();
+            this._listCharacters = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,7 +66,7 @@
             // 
             this.OnFileExit.Name = "OnFileExit";
             this.OnFileExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.OnFileExit.Size = new System.Drawing.Size(180, 22);
+            this.OnFileExit.Size = new System.Drawing.Size(134, 22);
             this.OnFileExit.Text = "E&xit";
             this.OnFileExit.Click += new System.EventHandler(this.OnFileExit_Click);
             // 
@@ -74,7 +74,7 @@
             // 
             this.characterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OnCharacterNew,
-            this.editToolStripMenuItem,
+            this.OnCharacterEdit,
             this.toolStripSeparator1,
             this.deleteToolStripMenuItem});
             this.characterToolStripMenuItem.Name = "characterToolStripMenuItem";
@@ -89,11 +89,12 @@
             this.OnCharacterNew.Text = "&New";
             this.OnCharacterNew.Click += new System.EventHandler(this.OnCharacterNew_Click);
             // 
-            // editToolStripMenuItem
+            // OnCharacterEdit
             // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.editToolStripMenuItem.Text = "&Edit";
+            this.OnCharacterEdit.Name = "OnCharacterEdit";
+            this.OnCharacterEdit.Size = new System.Drawing.Size(180, 22);
+            this.OnCharacterEdit.Text = "&Edit";
+            this.OnCharacterEdit.Click += new System.EventHandler(this.OnCharacterEdit_Click);
             // 
             // toolStripSeparator1
             // 
@@ -118,25 +119,26 @@
             // 
             this.OnHelpAbout.Name = "OnHelpAbout";
             this.OnHelpAbout.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.OnHelpAbout.Size = new System.Drawing.Size(180, 22);
+            this.OnHelpAbout.Size = new System.Drawing.Size(147, 22);
             this.OnHelpAbout.Text = "&About";
             this.OnHelpAbout.Click += new System.EventHandler(this.OnHelpAbout_Click);
             // 
-            // _characterRoster
+            // _listCharacters
             // 
-            this._characterRoster.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._characterRoster.FormattingEnabled = true;
-            this._characterRoster.Location = new System.Drawing.Point(0, 24);
-            this._characterRoster.Name = "_characterRoster";
-            this._characterRoster.Size = new System.Drawing.Size(284, 387);
-            this._characterRoster.TabIndex = 1;
+            this._listCharacters.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._listCharacters.FormattingEnabled = true;
+            this._listCharacters.Location = new System.Drawing.Point(0, 24);
+            this._listCharacters.Name = "_listCharacters";
+            this._listCharacters.Size = new System.Drawing.Size(284, 387);
+            this._listCharacters.TabIndex = 1;
+            this._listCharacters.DoubleClick += new System.EventHandler(this.OnCharacterEdit_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 411);
-            this.Controls.Add(this._characterRoster);
+            this.Controls.Add(this._listCharacters);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(260, 420);
@@ -157,12 +159,12 @@
         private System.Windows.Forms.ToolStripMenuItem OnFileExit;
         private System.Windows.Forms.ToolStripMenuItem characterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OnCharacterNew;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem OnCharacterEdit;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OnHelpAbout;
-        private System.Windows.Forms.ListBox _characterRoster;
+        private System.Windows.Forms.ListBox _listCharacters;
     }
 }
 

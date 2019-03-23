@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this._textName = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this._comboBoxProfession = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this._comboBoxRace = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this._textStrength = new System.Windows.Forms.TextBox();
             this._textIntelligence = new System.Windows.Forms.TextBox();
@@ -48,6 +49,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this._onSave = new System.Windows.Forms.Button();
             this._onCancel = new System.Windows.Forms.Button();
+            this._errors = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this._errors)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -66,19 +69,20 @@
             this._textName.Size = new System.Drawing.Size(100, 20);
             this._textName.TabIndex = 1;
             // 
-            // comboBox1
+            // _comboBoxProfession
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this._comboBoxProfession.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._comboBoxProfession.FormattingEnabled = true;
+            this._comboBoxProfession.Items.AddRange(new object[] {
             "Fighter",
             "Hunter",
             "Priest",
             "Rogue",
             "Wizard"});
-            this.comboBox1.Location = new System.Drawing.Point(78, 34);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 3;
+            this._comboBoxProfession.Location = new System.Drawing.Point(78, 34);
+            this._comboBoxProfession.Name = "_comboBoxProfession";
+            this._comboBoxProfession.Size = new System.Drawing.Size(121, 21);
+            this._comboBoxProfession.TabIndex = 3;
             // 
             // label3
             // 
@@ -98,19 +102,20 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Profession:";
             // 
-            // comboBox2
+            // _comboBoxRace
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this._comboBoxRace.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._comboBoxRace.FormattingEnabled = true;
+            this._comboBoxRace.Items.AddRange(new object[] {
             "Dwarf",
             "Elf",
             "Gnome",
             "Half Elf",
             "Human"});
-            this.comboBox2.Location = new System.Drawing.Point(78, 61);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 6;
+            this._comboBoxRace.Location = new System.Drawing.Point(78, 61);
+            this._comboBoxRace.Name = "_comboBoxRace";
+            this._comboBoxRace.Size = new System.Drawing.Size(121, 21);
+            this._comboBoxRace.TabIndex = 6;
             // 
             // label4
             // 
@@ -236,6 +241,11 @@
             this._onCancel.UseVisualStyleBackColor = true;
             this._onCancel.Click += new System.EventHandler(this._onCancel_Click);
             // 
+            // _errors
+            // 
+            this._errors.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this._errors.ContainerControl = this;
+            // 
             // CreateNewCharacter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -255,15 +265,16 @@
             this.Controls.Add(this._textIntelligence);
             this.Controls.Add(this._textStrength);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this._comboBoxRace);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this._comboBoxProfession);
             this.Controls.Add(this._textName);
             this.Controls.Add(this.label1);
             this.Name = "CreateNewCharacter";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create New Character";
+            ((System.ComponentModel.ISupportInitialize)(this._errors)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,10 +284,10 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox _textName;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox _comboBoxProfession;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox _comboBoxRace;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox _textStrength;
         private System.Windows.Forms.TextBox _textIntelligence;
@@ -291,5 +302,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button _onSave;
         private System.Windows.Forms.Button _onCancel;
+        private System.Windows.Forms.ErrorProvider _errors;
     }
 }

@@ -10,62 +10,38 @@ namespace CharacterCreator
     {
         public CharacterDatabase()
         {
-            var character = new Character();
-            character.Name = "dadadaad";
-            character.Description = "Example";
-            character.Strength = 100;
-            character.Intelligence = 1;
-            character.Agility = 50;
-            character.Constitution = 75;
-            character.Charisma = 2;
-            Add(character);
+
+            var characters = new Character[]
+            {
+                //new Character() {Name="Dwalin",Description="Hearty Dwarf.",Strength=50,Intelligence=10,Agility=35,Constitution=65,Charisma=3}
+            };
+
+            foreach (var character in characters)
+                Add(character);
+            
         }
-        public Character Add( Character character)
+
+        public Character Add (Character character)
         {
             if (character == null)
                 throw new ArgumentNullException(nameof(character));
 
             if (!character.Validate())
-                throw new Exception("character is invalid.");
+                throw new Exception("Character is invalid.");
 
             var existing = GetIndex(character.Name);
             if (existing >= 0)
-                throw new Exception("Cannot duplicate character.");
+                throw new Exception("Game must be unique.");
 
-            for (var index = 0; index < _items.Length; ++index)
-            {
-                if (_items[index] == null)
-                {
-                    character.Id = ++_nextId;
-                    _items[index] = Clone(character);
-                    break;
-                }
-            }
+            character.Id = ++_nextId;
+            _items.Add(Clone(character));
 
             return character;
         }
 
-        public Character Get (int id )
+        private int GetIndex( string name )
         {
-            var index = GetIndex(id);
-            if (index >= 0)
-                return Clone(_items[index]);
-
-            return null;
-        }
-
-        private int GetIndex( int id )
-        {
-            for (var index = 0; index < _items.Length; ++index)
-            if (_items[index]?.Id == id)
-                return index;
-
-            return -1;
-
-        }
-        private int GetIndex( string name)
-        {
-            for (var index = 0; index < _items.Length; ++index)
+            for (var index = 0; index < _items.Count; ++index)
                 if (String.Compare(_items[index]?.Name, name, true) == 0)
                     return index;
 
@@ -80,11 +56,22 @@ namespace CharacterCreator
             return newCharacter;
         }
 
-        private void Clone ( Character target, Character source)
+        public Character[] GetAll()
+        {
+            var charact = new List<Character>();
+            foreach (var item in _items)
+                charact.Add(Clone(item));
+
+            return charact.ToArray();
+        }
+
+        private void Clone(Character target, Character source )
         {
             target.Id = source.Id;
             target.Name = source.Name;
             target.Description = source.Description;
+            target.Profession = source.Profession;
+            target.Race = source.Race;
             target.Strength = source.Strength;
             target.Intelligence = source.Intelligence;
             target.Agility = source.Agility;
@@ -92,9 +79,22 @@ namespace CharacterCreator
             target.Charisma = source.Charisma;
         }
 
-        public Character Update ( int id, Character character )
+        public Character Update ( int id, Character character)
         {
+            if (id <= 0)
+                throw new ArgumentOutOfRangeException(nameof(id), "Id must be >0.");
+            if (character == null)
+                throw new ArgumentNullException(nameof(character));
+            if (!character.Validate())
+                throw new Exception("Character is invalid");
+
             var index = GetIndex(id);
+            if (index < 0)
+                throw new Exception("Character unavailable.");
+
+            var existingIndex = GetIndex(character.Name);
+            if (existingIndex >= 0 && existingIndex != index)
+                throw new Exception("Character must be unique.");
 
             character.Id = id;
             var existing = _items[index];
@@ -103,22 +103,16 @@ namespace CharacterCreator
             return character;
         }
 
-        public Character[] GetAll()
+        private int GetIndex( int id)
         {
-            int count = 0;
-            foreach (var item in _items)
-                if (item != null)
-                    ++count;
-            var characterIndex = 0;
-            var character = new Character[count];
-            for (var index = 0; index < _items.Length; ++index)
-                if (_items[index] != null)
-                    character[characterIndex++] = Clone(_items[index]);
-
-            return character;
+            for (var index = 0; index < _items.Count; ++index)
+                if (_items[index]?.Id == id)
+                    return index;
+            return -1;
         }
 
-        private readonly Character[] _items = new Character[100];
+
+        private readonly List<Character> _items = new List<Character>();
         private int _nextId = 0;
     }
 }
