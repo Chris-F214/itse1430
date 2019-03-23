@@ -100,5 +100,19 @@ namespace CharacterCreator.Winforms
         {
             MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void deleteToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            var selected = GetSelectedCharacter();
+            if (selected == null)
+                return;
+
+            if (MessageBox.Show(this, $"Really delete {selected.Name}?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            _characters.Delete(selected.Id);
+
+            BindList();
+        }
     }
 }

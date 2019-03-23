@@ -92,6 +92,7 @@
             // OnCharacterEdit
             // 
             this.OnCharacterEdit.Name = "OnCharacterEdit";
+            this.OnCharacterEdit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
             this.OnCharacterEdit.Size = new System.Drawing.Size(180, 22);
             this.OnCharacterEdit.Text = "&Edit";
             this.OnCharacterEdit.Click += new System.EventHandler(this.OnCharacterEdit_Click);
@@ -104,8 +105,10 @@
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deleteToolStripMenuItem.Text = "&Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 

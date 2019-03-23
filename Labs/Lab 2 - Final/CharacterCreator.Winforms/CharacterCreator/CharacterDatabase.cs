@@ -111,6 +111,15 @@ namespace CharacterCreator
             return -1;
         }
 
+        public void Delete ( int id )
+        {
+            if (id <= 0)
+                throw new ArgumentOutOfRangeException(nameof(id), "Id must be > 0.");
+
+            var index = GetIndex(id);
+            if (index >= 0)
+                _items.RemoveAt(index);
+        }
 
         private readonly List<Character> _items = new List<Character>();
         private int _nextId = 0;
