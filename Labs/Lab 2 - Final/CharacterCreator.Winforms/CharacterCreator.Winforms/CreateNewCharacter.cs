@@ -97,39 +97,5 @@ namespace CharacterCreator.Winforms
 
             return -1;
         }
-
-        //private void OnValidateName( object sender, CancelEventArgs e )
-        //{
-        //    var tb = sender as TextBox;
-
-        //    if (tb.Text.Length == 0)
-        //    {
-        //        _errors.SetError(tb, "Please name your character.");
-        //        e.Cancel = true;
-        //    } else
-        //    {
-        //        _errors.SetError(tb, "");
-        //    }
-        //}
-
-        //private void OnValidateStrength( object sender, CancelEventArgs e )
-        //{
-        //    var tb = sender as TextBox;
-
-        //    var strength = ReadDecimal(tb);
-        //    if (strength < 1)
-        //    {
-        //        _errors.SetError(tb, "price must be ")
-        //    }
-        //}
-
-        //private void OnValidateIntelligence( object sender, CancelEventArgs e )
-
-        //private void OnValidateAgility( object sender, CancelEventArgs e )
-
-        //private void OnValidateConstitution( object sender, CancelEventArgs e )
-
-        //private void OnValidateCharisma( object sender, CancelEventArgs e )
-
     }
 }

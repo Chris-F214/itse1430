@@ -13,7 +13,7 @@ namespace CharacterCreator
 
             var characters = new Character[]
             {
-                //new Character() {Name="Dwalin",Description="Hearty Dwarf.",Strength=50,Intelligence=10,Agility=35,Constitution=65,Charisma=3}
+
             };
 
             foreach (var character in characters)
