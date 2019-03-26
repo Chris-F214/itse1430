@@ -13,7 +13,7 @@ namespace CharacterCreator
         public string Name
         {
             get { return _name ?? ""; }
-            set { _name = value; }
+            set { _name = value ?? ""; }
         }
         private string _name = "";
         
@@ -23,6 +23,9 @@ namespace CharacterCreator
             set { _description = value; }
         }
         private string _description = "";
+
+        public string Profession { get; set; }
+        public string Race { get; set; }
 
         public decimal Strength { get; set; }
         public decimal Intelligence { get; set; }
@@ -67,7 +70,32 @@ namespace CharacterCreator
             if (Charisma > 100)
                 return false;
 
+            //Race/Profession
+            if (String.IsNullOrEmpty(Profession))
+                return false;
+
             return true;
+        }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        public Character()
+        {
+
+        }
+
+        public Character( string name, string description, decimal strength, decimal intelligence, decimal agility, decimal constitution, decimal charisma)
+        {
+            Name = name;
+            Description = description;
+            Strength = strength;
+            Intelligence = intelligence;
+            Agility = agility;
+            Constitution = constitution;
+            Charisma = charisma;
         }
     }
 }

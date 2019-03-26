@@ -30,10 +30,10 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this._textName = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this._comboBoxProfession = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this._comboBoxRace = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this._textStrength = new System.Windows.Forms.TextBox();
             this._textIntelligence = new System.Windows.Forms.TextBox();
@@ -52,6 +52,9 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 13);
             this.label1.Name = "label1";
@@ -66,22 +69,26 @@
             this._textName.Size = new System.Drawing.Size(100, 20);
             this._textName.TabIndex = 1;
             // 
-            // comboBox1
+            // _comboBoxProfession
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this._comboBoxProfession.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._comboBoxProfession.FormattingEnabled = true;
+            this._comboBoxProfession.Items.AddRange(new object[] {
             "Fighter",
             "Hunter",
             "Priest",
             "Rogue",
             "Wizard"});
-            this.comboBox1.Location = new System.Drawing.Point(78, 34);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 3;
+            this._comboBoxProfession.Location = new System.Drawing.Point(78, 34);
+            this._comboBoxProfession.Name = "_comboBoxProfession";
+            this._comboBoxProfession.Size = new System.Drawing.Size(100, 21);
+            this._comboBoxProfession.TabIndex = 3;
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(13, 64);
             this.label3.Name = "label3";
@@ -91,6 +98,9 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(13, 37);
             this.label2.Name = "label2";
@@ -98,22 +108,26 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Profession:";
             // 
-            // comboBox2
+            // _comboBoxRace
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this._comboBoxRace.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._comboBoxRace.FormattingEnabled = true;
+            this._comboBoxRace.Items.AddRange(new object[] {
             "Dwarf",
             "Elf",
             "Gnome",
             "Half Elf",
             "Human"});
-            this.comboBox2.Location = new System.Drawing.Point(78, 61);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 6;
+            this._comboBoxRace.Location = new System.Drawing.Point(78, 61);
+            this._comboBoxRace.Name = "_comboBoxRace";
+            this._comboBoxRace.Size = new System.Drawing.Size(100, 21);
+            this._comboBoxRace.TabIndex = 6;
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(13, 90);
             this.label4.Name = "label4";
@@ -125,7 +139,7 @@
             // 
             this._textStrength.Location = new System.Drawing.Point(78, 87);
             this._textStrength.Name = "_textStrength";
-            this._textStrength.Size = new System.Drawing.Size(100, 20);
+            this._textStrength.Size = new System.Drawing.Size(27, 20);
             this._textStrength.TabIndex = 8;
             this._textStrength.Text = "50";
             // 
@@ -133,12 +147,15 @@
             // 
             this._textIntelligence.Location = new System.Drawing.Point(78, 114);
             this._textIntelligence.Name = "_textIntelligence";
-            this._textIntelligence.Size = new System.Drawing.Size(100, 20);
+            this._textIntelligence.Size = new System.Drawing.Size(27, 20);
             this._textIntelligence.TabIndex = 9;
             this._textIntelligence.Text = "50";
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(13, 117);
             this.label5.Name = "label5";
@@ -150,12 +167,15 @@
             // 
             this._textAgility.Location = new System.Drawing.Point(78, 141);
             this._textAgility.Name = "_textAgility";
-            this._textAgility.Size = new System.Drawing.Size(100, 20);
+            this._textAgility.Size = new System.Drawing.Size(27, 20);
             this._textAgility.TabIndex = 11;
             this._textAgility.Text = "50";
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(13, 144);
             this.label6.Name = "label6";
@@ -167,12 +187,15 @@
             // 
             this._textConstitution.Location = new System.Drawing.Point(78, 168);
             this._textConstitution.Name = "_textConstitution";
-            this._textConstitution.Size = new System.Drawing.Size(100, 20);
+            this._textConstitution.Size = new System.Drawing.Size(27, 20);
             this._textConstitution.TabIndex = 13;
             this._textConstitution.Text = "50";
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(13, 171);
             this.label7.Name = "label7";
@@ -184,12 +207,15 @@
             // 
             this._textCharisma.Location = new System.Drawing.Point(78, 195);
             this._textCharisma.Name = "_textCharisma";
-            this._textCharisma.Size = new System.Drawing.Size(100, 20);
+            this._textCharisma.Size = new System.Drawing.Size(27, 20);
             this._textCharisma.TabIndex = 15;
             this._textCharisma.Text = "50";
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(13, 198);
             this.label8.Name = "label8";
@@ -199,14 +225,20 @@
             // 
             // _textDescription
             // 
+            this._textDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._textDescription.Location = new System.Drawing.Point(78, 222);
             this._textDescription.Multiline = true;
             this._textDescription.Name = "_textDescription";
-            this._textDescription.Size = new System.Drawing.Size(100, 20);
+            this._textDescription.Size = new System.Drawing.Size(195, 83);
             this._textDescription.TabIndex = 17;
             // 
             // label9
             // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(13, 225);
             this.label9.Name = "label9";
@@ -217,7 +249,7 @@
             // _onSave
             // 
             this._onSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._onSave.Location = new System.Drawing.Point(118, 247);
+            this._onSave.Location = new System.Drawing.Point(117, 310);
             this._onSave.Name = "_onSave";
             this._onSave.Size = new System.Drawing.Size(75, 23);
             this._onSave.TabIndex = 19;
@@ -228,7 +260,7 @@
             // _onCancel
             // 
             this._onCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._onCancel.Location = new System.Drawing.Point(199, 247);
+            this._onCancel.Location = new System.Drawing.Point(198, 310);
             this._onCancel.Name = "_onCancel";
             this._onCancel.Size = new System.Drawing.Size(75, 23);
             this._onCancel.TabIndex = 20;
@@ -240,7 +272,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(286, 282);
+            this.ClientSize = new System.Drawing.Size(285, 345);
             this.Controls.Add(this._onCancel);
             this.Controls.Add(this._onSave);
             this.Controls.Add(this.label9);
@@ -255,12 +287,13 @@
             this.Controls.Add(this._textIntelligence);
             this.Controls.Add(this._textStrength);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this._comboBoxRace);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this._comboBoxProfession);
             this.Controls.Add(this._textName);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CreateNewCharacter";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create New Character";
@@ -273,10 +306,10 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox _textName;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox _comboBoxProfession;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox _comboBoxRace;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox _textStrength;
         private System.Windows.Forms.TextBox _textIntelligence;

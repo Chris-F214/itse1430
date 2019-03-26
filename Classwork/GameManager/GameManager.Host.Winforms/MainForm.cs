@@ -35,7 +35,7 @@ namespace GameManager.Host.Winforms
 
         protected override void OnLoad( EventArgs e )
         {
-            base.OnLoad(e);
+             base.OnLoad(e);
 
             BindList();
         }
@@ -96,7 +96,6 @@ namespace GameManager.Host.Winforms
         {
             try
             {
-                //_games[GetNextEmptyGame()] = form.Game;
                 _games.Add(form.Game);
             } catch (NotImplementedException e)
             {
@@ -245,7 +244,7 @@ namespace GameManager.Host.Winforms
         //}
 
         ////HACK: Find first spot in array with no game
-        //private int GetNextEmptyGame ()
+        //private int GetNextEmptyGame()
         //{
         //    for (var index = 0; index < _games.Length; ++index)
         //        if (_games[index] == null)
