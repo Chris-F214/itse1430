@@ -13,20 +13,6 @@ namespace GameManager
 {
     public class MemoryGameDatabase : GameDatabase
     {
-        public MemoryGameDatabase()
-        {
-            //Collection initializer
-            var games = new[]
-                {
-                    new Game() { Name = "DOOM", Description = "Space Marine", Price = 49.99M },
-                    new Game() { Name = "Oblivion", Description = "Medieval", Price = 89.99M },
-                    new Game() { Name = "Fallout 76", Description = "Failed MMO", Price = 0.01M }
-                };
-
-            foreach (var game in games)
-                AddCore(game);
-        }
-
         protected override Game AddCore( Game game )
         {
             game.Id = ++_nextId;
@@ -54,8 +40,11 @@ namespace GameManager
         protected override IEnumerable<Game> GetAllCore()
         {
             //Use iterator
-            foreach (var item in _items)
-                yield return Clone(item);
+            //foreach (var item in _items)
+            //    yield return Clone(item);
+            //return _items;
+
+            return _items.Select(Clone);
         }
 
         protected override Game UpdateCore( int id, Game game )
@@ -89,12 +78,46 @@ namespace GameManager
 
         private int GetIndex( int id )
         {
-            for (var index = 0; index < _items.Count; ++index)
-                if (_items[index]?.Id == id)
-                    return index;
+            //var tempType = new IsIdType() { Id = id };
+
+            //Can use lambda anywhere you need a function object, must be explicit on type
+            //Func<Game, bool> isId = (g) => g.Id == id;
+
+            //Capture problems
+            //var games = _items.Where(g => g.Id == id);
+            //foreach (var game in games)
+            //{
+            //    ++id;
+            //};
+
+            //_items = all games
+            // .Where = filters down to only those matching IsId
+            // .FirstOrDefault = returns first of filtered items, if any
+            var game = _items.Where(g => g.Id == id).FirstOrDefault();
+            //var game = _items.Where(tempType.IsId).FirstOrDefault();
+            if (game != null)
+                return _items.IndexOf(game);
+            //for (var index = 0; index < _items.Count; ++index)
+            //    if (_items[index]?.Id == id)
+            //        return index;
 
             return -1;
         }
+
+        //Helper type to capture data needed by function
+        //private sealed class IsIdType
+        //{
+        //    public int Id { get; set; }
+
+        //    public bool IsId( Game game )
+        //    {
+        //        return game.Id == Id;
+        //    }
+        //}
+        //private bool IsId ( Game game )
+        //{
+        //    return game.Id == id;
+        //}
 
         //Arrays are so 90s
         //private readonly Game[] _items = new Game[100];

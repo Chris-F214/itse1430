@@ -20,7 +20,8 @@ namespace GameManager
                 throw new ArgumentNullException(nameof(game));
 
             //Game must be valid            
-            new ObjectValidator().Validate(game);
+            //new ObjectValidator().Validate(game);
+            ObjectValidator.Validate(game);
 
             //Game names must be unique
             var existing = FindByName(game.Name);
@@ -60,7 +61,10 @@ namespace GameManager
             if (game == null)
                 throw new ArgumentNullException(nameof(game));
 
-            new ObjectValidator().Validate(game);
+            //var val = new ObjectValidator();
+
+            //new ObjectValidator().Validate(game);
+            ObjectValidator.Validate(game);
 
             var existing = GetCore(id);
             if (existing != null)
@@ -80,13 +84,26 @@ namespace GameManager
 
         protected virtual Game FindByName( string name )
         {
-            foreach(var game in GetAllCore())
-            {
-                if (String.Compare(game.Name, name, true) == 0)
-                    return game;
-            };
+            //select
+            //from
+            //where
+            // => IEnumerable<T>
+            return (from game in GetAllCore()
+                    where String.Compare(game.Name, name, true) == 0
+                    //orderby game.Name, game.Id descending
+                    select game).FirstOrDefault();
 
-            return null;
+            return GetAllCore().Where(game => String.Compare(game.Name, name, true) == 0)
+                        .Select(game => game)
+                        .FirstOrDefault();
+
+            //foreach (var game in GetAllCore())
+            //{
+            //    if (String.Compare(game.Name, name, true) == 0)
+            //        return game;
+            //};
+
+            //return null;
         }
 
         protected abstract Game GetCore( int id );
