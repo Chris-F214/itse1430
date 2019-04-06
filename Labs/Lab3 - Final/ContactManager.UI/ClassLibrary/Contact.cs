@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business_Layer
+namespace BusinessLayer
 {
     public class Contact : IValidatableObject
     {
@@ -25,12 +25,12 @@ namespace Business_Layer
         }
         private string _email = "";
 
-        public IEnumerable<ValidationResult> Validate (ValidationContext validationContext )
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var items = new List<ValidationResult>();
 
             if (String.IsNullOrEmpty(Name))
-                items.Add(new ValidationResult("Name is required.", new[] { nameof(Name) }));
+                items.Add(new ValidationResult("Please enter a name.", new[] { nameof(Name) }));
 
             if (String.IsNullOrEmpty(Email))
                 items.Add(new ValidationResult("Please enter an email.", new[] { nameof(Email) }));
@@ -38,5 +38,9 @@ namespace Business_Layer
             return items;
         }
 
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E65B79C5-A2BC-4D43-BDCB-201EF989F350}</ProjectGuid>
+    <ProjectGuid>{D6371003-33F5-4FAE-88DC-3790AA6CBCA8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>ContactManager.UI</RootNamespace>
     <AssemblyName>ContactManager.UI</AssemblyName>
@@ -33,10 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClassLibrary">
+      <HintPath>..\ClassLibrary\obj\Debug\ClassLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -100,8 +102,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Business Layer\BusinessLayer.csproj">
-      <Project>{e7cdc2b6-0777-4eec-82ea-78d6aaf5feaf}</Project>
+    <ProjectReference Include="..\ClassLibrary\BusinessLayer.csproj">
+      <Project>{fbd0f445-33e1-49a3-890c-9a8860c19aa7}</Project>
       <Name>BusinessLayer</Name>
     </ProjectReference>
   </ItemGroup>

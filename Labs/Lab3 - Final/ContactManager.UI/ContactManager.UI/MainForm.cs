@@ -17,33 +17,24 @@ namespace ContactManager.UI
             InitializeComponent();
         }
 
-        private void OnFileExit_Click( object sender, EventArgs e )
-        {
-            Close();
-        }
-
         private void OnHelpAbout_Click( object sender, EventArgs e )
         {
             var form = new AboutBox();
             form.ShowDialog();
         }
 
-        protected override void OnLoad( EventArgs e )
+        private void OnFileExit_Click( object sender, EventArgs e )
         {
-            base.OnLoad(e);
-
-            BindList();
+            Close();
         }
 
         private void BindList()
         {
             _listContacts.Items.Clear();
-            _listContacts.DisplayMember = nameof(Business_Layer.Contact.Name);
+            _listContacts.DisplayMember = nameof(Contact.Name);
 
-            _listContacts.Items.AddRange(_contact.GetAll().ToArray());
+            _listContacts.Items.AddRange(_contacts.GetAll().ToArray());
         }
-
-        private Business_Layer.IContactDatabase _contact = new Business_Layer.ContactDatabase();
 
         private void OnContactsAdd_Click( object sender, EventArgs e )
         {
@@ -52,5 +43,7 @@ namespace ContactManager.UI
 
             BindList();
         }
+
+        private IContactDatabase _contacts = new ContactDatabase();
     }
 }
