@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BA2A1A5B-C059-486E-B185-4ACBA8077CF9}</ProjectGuid>
+    <ProjectGuid>{20D9555F-82BE-46AA-886B-286D02EC7BF9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>GameManager.Host.Winforms</RootNamespace>
     <AssemblyName>GameManager.Host.Winforms</AssemblyName>
@@ -99,8 +99,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GameManager.FileSystem\GameManager.FileSystem.csproj">
+      <Project>{1cc9d177-9208-47fc-bc52-7d11f215ce6b}</Project>
+      <Name>GameManager.FileSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameManager.Sql\GameManager.Sql.csproj">
+      <Project>{a3bdfc99-4dbe-48b0-bdeb-af5c9c6ff8e6}</Project>
+      <Name>GameManager.Sql</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GameManager\GameManager.csproj">
-      <Project>{f7b182d4-1fd6-46fd-9987-32d6eb4b5d75}</Project>
+      <Project>{a2fd1153-8361-4388-8234-0f9463049ae5}</Project>
       <Name>GameManager</Name>
     </ProjectReference>
   </ItemGroup>

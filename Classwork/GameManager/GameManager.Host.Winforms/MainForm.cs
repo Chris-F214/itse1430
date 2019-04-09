@@ -1,144 +1,311 @@
-﻿/*
- * ITSE 1430
- * 
- * Provides a sample implementation of a game database.
- */
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using GameManager.FileSystem;
+using GameManager.Sql;
 
-namespace GameManager
+namespace GameManager.Host.Winforms
 {
-    public class MemoryGameDatabase : GameDatabase
+    public partial class MainForm : Form
     {
-        protected override Game AddCore( Game game )
+        public MainForm()
         {
-            game.Id = ++_nextId;
-            _items.Add(Clone(game));
+            InitializeComponent();
 
-            return game;
+            //LoadUI();
         }
 
-        protected override void DeleteCore( int id )
+        private void OnFileExit( object sender, EventArgs e )
         {
-            var index = GetIndex(id);
-            if (index >= 0)
-                _items.RemoveAt(index);
+            //Local variable
+            var x = 10;
+
+            Close();
         }
 
-        protected override Game GetCore( int id )
+        private void OnHelpAbout( object sender, EventArgs e )
         {
-            var index = GetIndex(id);
-            if (index >= 0)
-                return Clone(_items[index]);
-
-            return null;
+            var form = new AboutBox();
+            form.ShowDialog();
         }
 
-        protected override IEnumerable<Game> GetAllCore()
+        protected override void OnLoad( EventArgs e )
         {
-            //Use iterator
-            //foreach (var item in _items)
-            //    yield return Clone(item);
-            //return _items;
+            base.OnLoad(e);
 
-            return _items.Select(Clone);
+            //Seed if database is empty
+            var games = _games.GetAll();
+            if (games.Count() == 0)
+                //SeedDatabase.Seed(_games);
+                _games.Seed();
+
+            BindList();
         }
 
-        protected override Game UpdateCore( int id, Game game )
+        private void BindList()
         {
-            var index = GetIndex(id);
+            //Bind games to listbox
+            _listGames.Items.Clear();
+            _listGames.DisplayMember = nameof(Game.Name);
 
-            game.Id = id;
-            var existing = _items[index];
-            Clone(existing, game);
-
-            return game;
-        }
-
-        private Game Clone( Game game )
-        {
-            var newGame = new Game();
-            Clone(newGame, game);
-
-            return newGame;
-        }
-
-        private void Clone( Game target, Game source )
-        {
-            target.Id = source.Id;
-            target.Name = source.Name;
-            target.Description = source.Description;
-            target.Price = source.Price;
-            target.Owned = source.Owned;
-            target.Completed = source.Completed;
-        }
-
-        private int GetIndex( int id )
-        {
-            #region Comments
-
-            //Capturing parameters/locals needs to be done using a temp type - compiler will generate this code            
-            //var tempType = new IsIdType() { Id = id };
-            //var game = _items.Where(tempType.IsId).FirstOrDefault();
-
-            //Can use lambda anywhere you need a function object, must be explicit on type
-            //Func<Game, bool> isId = (g) => g.Id == id;
-
-            //Capture problems
-            //var games = _items.Where(g => g.Id == id);
-            //foreach (var game in games)
+            //Can use AddRange now that we don't care about null items
+            //var enumor = _games.GetAll();
+            //var enumoror = enumor.GetEnumerator();
+            //while (enumoror.MoveNext())
             //{
-            //    ++id;
+            //    var item = enumoror.Current;
             //};
-            #endregion
+            ////foreach (var item in enumor)
+            //{
+            //};
 
-            //_items = all games
-            // .Where = filters down to only those matching IsId
-            // .FirstOrDefault = returns first of filtered items, if any
-            var game = _items.Where(g => g.Id == id).FirstOrDefault();
-
-            //Demoing anonymous type
-            //var games = from g in _items
-            //            where g.Id == id
-            //            select new { Id = g.Id, Name = g.Name };            
-            //var game = games.FirstOrDefault();            
-            if (game != null)
-                return _items.IndexOf(game);
-
-            //Forget this
-            //for (var index = 0; index < _items.Count; ++index)
-            //    if (_items[index]?.Id == id)
-            //        return index;
-
-            return -1;
+            var items = _games.GetAll();
+            items = items.OrderBy(GetName);
+            _listGames.Items.AddRange(items.ToArray());
+            //foreach (var game in _games)
+            //{
+            //    if (game != null)
+            //        _listGames.Items.Add(game);
+            //};
         }
 
-        //Helper type to capture data needed by function
-        //private sealed class IsIdType
-        //{
-        //    public int Id { get; set; }
+        private string GetName( Game game )
+        {
+            return game.Name;
+        }
 
-        //    public bool IsId( Game game )
+        private void OnGameAdd( object sender, EventArgs e )
+        {
+            //Display UI
+            var form = new GameForm();
+
+            while (true)
+            {
+                //Modal
+                if (form.ShowDialog(this) != DialogResult.OK)
+                    return;
+
+                //Add
+                try
+                {
+                    //Anything in here that raises an exception will
+                    //be sent to the catch block
+
+                    OnSafeAdd(form);
+                    break;
+                } catch (InvalidOperationException)
+                {
+                    MessageBox.Show(this, "Choose a better game.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                } catch (Exception ex)
+                {
+                    //Recover from errors
+                    DisplayError(ex);
+                };
+            };
+
+            BindList();
+        }
+
+        private void DisplayError( Exception ex )
+        {
+            MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void OnSafeAdd( GameForm form )
+        {
+            try
+            {
+                //_games[GetNextEmptyGame()] = form.Game;
+                _games.Add(form.Game);
+            } catch (NotImplementedException e)
+            {
+                //Rewriting an exception
+                throw new Exception("Not implemented yet", e);
+            } catch (Exception e)
+            {
+                //Log a message 
+
+                //Rethrow exception - wrong way
+                //throw e;
+                throw;
+            };
+        }
+
+        private IGameDatabase _games = new SqlGameDatabase();
+
+        private void OnGameEdit( object sender, EventArgs e )
+        {
+            var form = new GameForm();
+
+            var game = GetSelectedGame();
+            if (game == null)
+                return;
+
+            //Game to edit
+            form.Game = game;
+
+            while (true)
+            {
+                if (form.ShowDialog(this) != DialogResult.OK)
+                    return;
+
+                try
+                {
+                    //UpdateGame(game, form.Game);            
+                    _games.Update(game.Id, form.Game);
+                    break;
+                } catch (Exception ex)
+                {
+                    DisplayError(ex);
+                };
+            };
+
+            BindList();
+        }
+
+        private void OnGameDelete( object sender, EventArgs e )
+        {
+            //Get selected game, if any
+            var selected = GetSelectedGame();
+            if (selected == null)
+                return;
+
+            //Display confirmation
+            if (MessageBox.Show(this, $"Are you sure you want to delete {selected.Name}?",
+                               "Confirm Delete", MessageBoxButtons.YesNo,
+                               MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            try
+            {
+                //DeleteGame(selected);
+                _games.Delete(selected.Id);
+            } catch (Exception ex)
+            {
+                DisplayError(ex);
+            };
+            BindList();
+        }
+
+        private Game GetSelectedGame()
+        {
+            var value = _listGames.SelectedItem;
+
+            //Typesafe conversion to IEnumerable<T>
+            //_listGames.Items.OfType<Game>(); //as
+            //_listGames.Items.Cast<Game>(); //(T)
+
+            //C-style cast - don't do this
+            //var game = (Game)value;
+
+            //Preferred - null if not valid
+            var game = value as Game;
+
+            //Type check
+            var game2 = (value is Game) ? (Game)value : null;
+
+            return _listGames.SelectedItem as Game;
+        }
+
+        private void OnGameSelected( object sender, EventArgs e )
+        {
+        }
+
+        protected override void OnFormClosing( FormClosingEventArgs e )
+        {
+            if (MessageBox.Show(this, "Are you sure?", "Close", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                e.Cancel = true;
+                return;
+            };
+            base.OnFormClosing(e);
+        }
+
+        #region Unused Code (Demo only)
+
+        //void LoadUI ()
+        //{
+        //    Game game = new Game();
+
+        //    game.Name = "DOOM";
+        //    game.Price = 59.99M;
+
+        //    var name = game.Name;
+        //    if (name.Length == 0)
+        //        /* is empty*/;
+
+        //    //Checking for null - long way
+        //    if (game.Name != null && game.Name.Length == 0)
+        //        ;
+
+        //    //Conditional - E ? Et : Ef
+        //    var length = game.Name != null ? game.Name.Length : 0;
+
+        //    //Short way - null conditional
+        //    // game.Name.Length -> int
+        //    // game.Name?.Length -> int?
+        //    if ((game.Name?.Length ?? 0) == 0)
+        //        ;
+        //    if (game.Name.Length == 0)
+        //        /* is empty */
+        //        ;
+
+        //    //var isCool = game.IsCoolGame;
+        //    //game.IsCoolGame = false;
+
+        //    //Validate(game)
+        //    game.Validate();
+
+        //    //var x = 10;
+        //    //x.ToString();
+
+        //    //var str = game.Publisher;            
+        //    //Decimal.TryParse("45.99", out game.Price);
+
+        //    //event EventHandler Click;
+        //    //delegate EventHandler void ( Object, EventArgs )
+        //    //_miGameAdd.Click += OnGameAdd;
+        //}
+
+        ////HACK: Find first spot in array with no game
+        //private int GetNextEmptyGame ()
+        //{
+        //    for (var index = 0; index < _games.Length; ++index)
+        //        if (_games[index] == null)
+        //            return index;
+
+        //    return -1;
+        //}
+
+        //private void UpdateGame ( Game oldGame, Game newGame )
+        //{
+        //    for (int index = 0; index < _games.Length; ++index)
         //    {
-        //        return game.Id == Id;
-        //    }
+        //        if (_games[index] == oldGame)
+        //        {
+        //            _games[index] = newGame;
+        //            break;
+        //        };
+        //    };
         //}
-        //private bool IsId ( Game game )
+
+        //private void DeleteGame ( Game game )
         //{
-        //    return game.Id == id;
+        //    for (var index = 0; index < _games.Length; ++index)
+        //    {
+        //        if (_games[index] == game)
+        //        {
+        //            _games[index] = null;
+        //            break;
+        //        };
+        //    };
         //}
-
-        //Arrays are so 90s
-        //private readonly Game[] _items = new Game[100];
-
-        //ArrayLists are so 00s
-        //private readonly ArrayList _items = new ArrayList();
-
-        private readonly List<Game> _items = new List<Game>();
-
-        private int _nextId = 0;
+        #endregion
     }
 }
